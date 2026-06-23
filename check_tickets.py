@@ -47,43 +47,19 @@ def check_tickets() -> bool:
 
         # 1. Переключаемся на вкладку "Билет на теплоход"
         page.get_by_text("Билет на теплоход").click()
-
-        # =====================================================================
-        # ЗАГОТОВКА — замени этот блок кодом из Playwright Codegen.
-        # Как получить точный код — см. README.md, шаг 3.
-        #
-        # Обычно это выглядит примерно так (точные названия полей могут
-        # отличаться — Codegen покажет их верно):
-        #
-        # page.get_by_placeholder("Откуда").click()
-        # page.get_by_placeholder("Откуда").fill(FROM_PORT)
-        # page.get_by_text(FROM_PORT, exact=False).first.click()   # выбор подсказки
-        #
-        # page.get_by_placeholder("Куда").click()
-        # page.get_by_placeholder("Куда").fill(TO_PORT)
-        # page.get_by_text(TO_PORT, exact=False).first.click()
-        #
-        # page.get_by_placeholder("Дата").click()
-        # page.get_by_placeholder("Дата").fill(TARGET_DATE)
-        #
-        # page.get_by_role("button", name="Найти").click()
-        # page.wait_for_load_state("networkidle")
-        # =====================================================================
-	
-	page.get_by_role("tab", name="Билет на теплоход").click()
-    	page.get_by_role("textbox").first.click()
-    	page.get_by_role("textbox").first.fill("кор")
-    	page.get_by_text("Корсаков порт Сахалинская область Корсаков").click()
-    	page.get_by_role("textbox").nth(1).click()
-    	page.get_by_role("textbox").nth(1).fill("м")
-    	page.get_by_text("Малокурильское порт Сахалинская область").click()
-    	page.get_by_role("textbox", name="Выберите дату").click()
-    	page.get_by_role("button", name="Следующий месяц (PageDown)").click()
-    	page.get_by_text("28").click()
-    	page.get_by_role("button", name="Найти").click()
-        
-	content = page.content()
-        browser.close()
+		page.get_by_role("tab", name="Билет на теплоход").click()
+		page.get_by_role("textbox").first.click()
+		page.get_by_role("textbox").first.fill("кор")
+		page.get_by_text("Корсаков порт Сахалинская область Корсаков").click()
+		page.get_by_role("textbox").nth(1).click()
+		page.get_by_role("textbox").nth(1).fill("м")
+		page.get_by_text("Малокурильское порт Сахалинская область").click()
+		page.get_by_role("textbox", name="Выберите дату").click()
+		page.get_by_role("button", name="Следующий месяц (PageDown)").click()
+		page.get_by_text("28").click()
+		page.get_by_role("button", name="Найти").click()
+		content = page.content()
+		browser.close()
 
         return NO_RESULTS_TEXT not in content
 
