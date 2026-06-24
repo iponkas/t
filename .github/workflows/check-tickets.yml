@@ -2,7 +2,7 @@ name: Check mostanet tickets
 
 on:
   schedule:
-    - cron: "*/15 * * * *"   # каждые 15 минут (время в UTC)
+    - cron: "0 * * * *"   # раз в час, в начале каждого часа (время в UTC)
   workflow_dispatch: {}       # позволяет запустить вручную из вкладки Actions
 
 jobs:
