@@ -61,7 +61,12 @@ def send_message(text: str, reply_markup: dict | None = None) -> None:
 
 
 def answer_callback(callback_query_id: str) -> None:
-    telegram_api("answerCallbackQuery", {"callback_query_id": callback_query_id})
+    try:
+        telegram_api("answerCallbackQuery", {"callback_query_id": callback_query_id})
+    except urllib.error.HTTPError:
+        # Не критично, если это подтверждение не прошло (например, кнопка
+        # уже не самая свежая) — главное, чтобы остальная логика всё равно сработала.
+        print("Не удалось подтвердить нажатие кнопки (не критично), продолжаю.")
 
 
 def build_from_keyboard() -> dict:
