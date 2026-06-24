@@ -1,0 +1,7 @@
+{
+  "from_port": "Корсаков порт",
+  "to_port": "Малокурильское порт",
+  "target_date": "28.07.2026",
+  "telegram_offset": 0,
+  "active": true
+}
