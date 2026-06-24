@@ -133,7 +133,8 @@ def process_updates(config: dict) -> dict:
             elif data.startswith("to:"):
                 config["to_port"] = data[len("to:"):]
                 send_message(
-                    f"✅ Маршрут установлен: {config['from_port']} → {config['to_port']}"
+                    f"✅ Маршрут установлен: {config['from_port']} → {config['to_port']}\n"
+                    "Теперь напиши дату поездки в формате ДД.MM.ГГГГ, например 28.07.2026."
                 )
 
             elif data == "stop_checking":
