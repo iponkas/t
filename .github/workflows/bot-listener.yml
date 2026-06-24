@@ -1,1 +1,29 @@
+name: Telegram bot listener
 
+on:
+  workflow_dispatch: {}       # запускается по сигналу снаружи (через cron-job.org)
+
+permissions:
+  contents: write            # нужно, чтобы сохранять config.json обратно в репозиторий
+
+jobs:
+  listen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run listener
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python bot_listener.py
+
+      - name: Save updated settings
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Обновление настроек бота"
+          file_pattern: config.json
