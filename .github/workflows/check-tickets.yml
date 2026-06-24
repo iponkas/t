@@ -1,9 +1,7 @@
 name: Check mostanet tickets
 
 on:
-  schedule:
-    - cron: "*/5 * * * *"   # ВРЕМЕННО: каждые 5 минут, для проверки
-  workflow_dispatch: {}       # позволяет запустить вручную из вкладки Actions
+  workflow_dispatch: {}       # запускается по сигналу снаружи (через cron-job.org)
 
 jobs:
   check:
